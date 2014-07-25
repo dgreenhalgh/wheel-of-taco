@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".WheelFragment" >
+
+    <item android:id="@+id/add_restaurant"
+          android:icon="@android:drawable/ic_menu_add"
+          android:title="@string/wheel_menu_add_restaurant"
+          android:showAsAction="ifRoom|withText"/>
+
+    <item android:id="@+id/edit_restaurants"
+        android:title="@string/wheel_menu_edit_restaurants"
+        android:showAsAction="never" />
+
+</menu>

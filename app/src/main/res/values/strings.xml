@@ -8,4 +8,7 @@
 
     <string name="result_text_view_default">Spin to settle the debate!</string>
     <string name="result_text_view_restaurant">You should eat %1$d.</string>
+
+    <string name="wheel_menu_add_restaurant">Add restaurant</string>
+    <string name="wheel_menu_edit_restaurants">Edit restaurants</string>
 </resources>

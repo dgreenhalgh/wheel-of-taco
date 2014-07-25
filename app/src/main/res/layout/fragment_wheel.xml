@@ -12,6 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:paddingTop="24dp"
-        android:text="@string/result_text_view_default" />
+        android:text="result_text_view" />
 
 </LinearLayout>
