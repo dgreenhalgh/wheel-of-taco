@@ -11,4 +11,9 @@
 
     <string name="wheel_menu_add_restaurant">Add restaurant</string>
     <string name="wheel_menu_edit_restaurants">Edit restaurants</string>
+
+    <string name="title_activity_restaurant">RestaurantActivity</string>
+    <string name="restaurant_name">Name</string>
+    <string name="restaurant_name_hint">The name of the restaurant</string>
+
 </resources>
