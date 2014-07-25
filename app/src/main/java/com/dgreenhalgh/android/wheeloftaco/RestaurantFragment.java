@@ -2,13 +2,14 @@ package com.dgreenhalgh.android.wheeloftaco;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
 public class RestaurantFragment extends Fragment {
-
+    private static String TAG = "RestaurantFragment";
     public static String EXTRA_RESTAURANT_NAME = "wheeloftaco.RESTAURANT_NAME";
 
     private EditText mRestaurantNameEditText;
@@ -24,5 +25,15 @@ public class RestaurantFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
 
+        String restaurantName = mRestaurantNameEditText.getText().toString();
+        Log.d(TAG, restaurantName + " added");
+
+        Restaurant restaurant = new Restaurant();
+        restaurant.setName(restaurantName);
+        RestaurantAdapter.get(getActivity()).addRestaurant(restaurant);
+    }
 }

@@ -41,7 +41,9 @@ public class RestaurantAdapter {
     }
 
     public void addRestaurant(Restaurant restaurant) {
-        mRestaurants.add(restaurant);
+        if(!mRestaurants.contains(restaurant)) { // TODO: Compare by restaurant name
+            mRestaurants.add(restaurant);
+        }
     }
 
     public boolean saveRestaurants() {
