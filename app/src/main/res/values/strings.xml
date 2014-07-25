@@ -6,4 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="result_text_view_default">Spin to settle the debate!</string>
+    <string name="result_text_view_restaurant">You should eat %1$d.</string>
 </resources>
