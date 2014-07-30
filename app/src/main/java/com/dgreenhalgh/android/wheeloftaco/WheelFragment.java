@@ -44,11 +44,11 @@ public class WheelFragment extends Fragment {
         switch(item.getItemId()) {
             case R.id.menu_add_restaurant:
                 Intent addRestaurantIntent = new Intent(getActivity(), RestaurantActivity.class);
-                startActivityForResult(addRestaurantIntent, 0);
+                startActivity(addRestaurantIntent);
                 return true;
             case R.id.menu_edit_restaurants:
                 Intent editRestaurantIntent  = new Intent(getActivity(), RestaurantListActivity.class);
-                startActivityForResult(editRestaurantIntent, 1);
+                startActivity(editRestaurantIntent);
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -58,6 +58,10 @@ public class WheelFragment extends Fragment {
     public void onPause() {
         super.onPause();
         RestaurantHelper.get(getActivity()).saveRestaurants();
+    }
+
+    public void drawWheel() {
+
     }
 
 }
