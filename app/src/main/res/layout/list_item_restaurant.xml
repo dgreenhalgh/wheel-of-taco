@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <TextView android:id="@+id/restaurant_list_item_titleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:text="Restaurant name"/>
+
+    <CheckBox android:id="@+id/restaurant_list_item_restaurantSelectableTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/restaurant_list_item_titleTextView"
+        android:layout_alignParentRight="true"
+        android:enabled="true"
+        android:focusable="true"
+        android:padding="4dp"/>
+
+</RelativeLayout>

@@ -43,12 +43,12 @@ public class WheelFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.menu_add_restaurant:
-                Restaurant restaurant = new Restaurant();
-                RestaurantAdapter.get(getActivity()).addRestaurant(restaurant);
-                Intent intent = new Intent(getActivity(), RestaurantActivity.class);
-                startActivityForResult(intent, 0);
+                Intent addRestaurantIntent = new Intent(getActivity(), RestaurantActivity.class);
+                startActivityForResult(addRestaurantIntent, 0);
                 return true;
-            // TODO: Add "edit restaurants" menu item
+            case R.id.menu_edit_restaurants:
+                Intent editRestaurantIntent  = new Intent(getActivity(), RestaurantListActivity.class);
+                startActivityForResult(editRestaurantIntent, 1);
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -57,7 +57,7 @@ public class WheelFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        RestaurantAdapter.get(getActivity()).saveRestaurants();
+        RestaurantHelper.get(getActivity()).saveRestaurants();
     }
 
 }

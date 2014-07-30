@@ -20,6 +20,10 @@
             android:name=".RestaurantActivity"
             android:label="@string/title_activity_restaurant" >
         </activity>
+        <activity
+            android:name=".RestaurantListActivity"
+            android:label="@string/title_activity_restaurant_list" >
+        </activity>
     </application>
 
 </manifest>

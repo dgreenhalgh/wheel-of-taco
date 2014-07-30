@@ -32,8 +32,7 @@ public class RestaurantFragment extends Fragment {
         String restaurantName = mRestaurantNameEditText.getText().toString();
         Log.d(TAG, restaurantName + " added");
 
-        Restaurant restaurant = new Restaurant();
-        restaurant.setName(restaurantName);
-        RestaurantAdapter.get(getActivity()).addRestaurant(restaurant);
+        Restaurant restaurant = new Restaurant(restaurantName);
+        RestaurantHelper.get(getActivity()).addRestaurant(restaurant);
     }
 }

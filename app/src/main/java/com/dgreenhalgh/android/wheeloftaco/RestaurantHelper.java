@@ -3,24 +3,19 @@ package com.dgreenhalgh.android.wheeloftaco;
 import android.content.Context;
 import android.util.Log;
 
-import org.json.JSONException;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
-public class RestaurantAdapter {
+public class RestaurantHelper {
     private static final String TAG = "RestaurantAdapter";
     private static final String FILENAME = "restaurants.json";
 
     private ArrayList<Restaurant> mRestaurants;
     private WheelOfTacoJSONSerializer mSerializer;
 
-    private static RestaurantAdapter sRestaurantAdapter;
+    private static RestaurantHelper sRestaurantHelper;
     private Context mAppContext;
 
-    private RestaurantAdapter(Context appContext) {
+    private RestaurantHelper(Context appContext) {
         mAppContext = appContext;
         mSerializer = new WheelOfTacoJSONSerializer(mAppContext, FILENAME);
 
@@ -32,12 +27,12 @@ public class RestaurantAdapter {
         }
     }
 
-    public static RestaurantAdapter get(Context context) {
-        if(sRestaurantAdapter == null) {
-            sRestaurantAdapter = new RestaurantAdapter(context.getApplicationContext());
+    public static RestaurantHelper get(Context context) {
+        if(sRestaurantHelper == null) {
+            sRestaurantHelper = new RestaurantHelper(context.getApplicationContext());
         }
 
-        return sRestaurantAdapter;
+        return sRestaurantHelper;
     }
 
     public void addRestaurant(Restaurant restaurant) {
@@ -56,4 +51,7 @@ public class RestaurantAdapter {
         }
     }
 
+    public ArrayList<Restaurant> getRestaurants() {
+        return mRestaurants;
+    }
 }
