@@ -5,13 +5,17 @@
     android:orientation="vertical"
     tools:context="com.dgreenhalgh.android.wheeloftaco.WheelFragment">
 
-    <!-- TODO: Add custom wheel view -->
+    <LinearLayout android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"/>
 
     <TextView android:id="@+id/result_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:paddingTop="24dp"
+        android:padding="24dp"
         android:text="result_text_view" />
 
 </LinearLayout>
