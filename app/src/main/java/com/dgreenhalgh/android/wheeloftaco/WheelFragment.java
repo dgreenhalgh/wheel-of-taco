@@ -11,7 +11,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.achartengine.GraphicalView;
+import org.achartengine.chart.PieChart;
 
 public class WheelFragment extends Fragment {
 
@@ -29,6 +33,10 @@ public class WheelFragment extends Fragment {
 
         mResultTextView = (TextView)view.findViewById(R.id.result_text_view);
         mResultTextView.setText(R.string.result_text_view_default);
+
+        LinearLayout wheelContainer = (LinearLayout)view.findViewById(R.id.chart);
+        GraphicalView wheelView = RestaurantWheelView.getNewInstance(getActivity());
+        wheelContainer.addView(wheelView);
 
         return view;
     }
@@ -62,6 +70,10 @@ public class WheelFragment extends Fragment {
 
     public void drawWheel() {
 
+    }
+
+    public void buildWheel() {
+//        PieChart wheelPieChart = new PieChart();
     }
 
 }
