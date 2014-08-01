@@ -14,17 +14,19 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.achartengine.GraphicalView;
-import org.achartengine.chart.PieChart;
 import org.achartengine.model.Point;
-import org.achartengine.model.SeriesSelection;
 
 public class WheelFragment extends Fragment {
 
     private TextView mResultTextView;
+    private LinearLayout mWheelContainer;
+    private GraphicalView mWheelView;
     private Point mSelectionPoint;
 
     private GestureDetector mGestureDetector;
@@ -44,18 +46,12 @@ public class WheelFragment extends Fragment {
         mResultTextView = (TextView)view.findViewById(R.id.result_text_view);
         mResultTextView.setText(R.string.result_text_view_default);
 
-        LinearLayout wheelContainer = (LinearLayout)view.findViewById(R.id.chart);
-        GraphicalView wheelView = RestaurantWheelView.getNewInstance(getActivity());
-        wheelContainer.addView(wheelView);
-        wheelView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                mGestureDetector.onTouchEvent(event);
-                return true;
-            }
-        });
+        mWheelContainer = (LinearLayout)view.findViewById(R.id.chart);
 
-        mSelectionPoint = new Point(wheelContainer.getWidth() / 2, wheelContainer.getY() + 5);
+        RestaurantHelper.get(getActivity()).loadRestaurants();
+        drawWheel();
+
+        mSelectionPoint = new Point(540, 400);
         // TODO: figure out selection
 
         return view;
@@ -88,7 +84,23 @@ public class WheelFragment extends Fragment {
         RestaurantHelper.get(getActivity()).saveRestaurants();
     }
 
+    public void drawWheel() {
+        mWheelView = RestaurantWheelView.getNewInstance(getActivity());
+        mWheelContainer.removeAllViews();
+        mWheelContainer.addView(mWheelView);
+        mWheelView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                mGestureDetector.onTouchEvent(event);
+                return true;
+
+            }
+        });
+    }
+
     class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener {
+
+        private float mStartPositionHack = 0;
 
         @Override
         public boolean onDown(MotionEvent event) {
@@ -99,6 +111,16 @@ public class WheelFragment extends Fragment {
         @Override
         public boolean onFling(MotionEvent event1, MotionEvent event2, float velocityX, float velocityY) {
             Log.d("wheelFrag", "e1: " + event1 + ", e2: " + event2 + ", x: " + velocityX + ", y: " + velocityY);
+
+            float rotationPosition = velocityY / 10;
+
+            RotateAnimation wheelSpinAnimation = new RotateAnimation(mStartPositionHack, rotationPosition, Animation.ABSOLUTE, 540, Animation.ABSOLUTE, 692);
+            wheelSpinAnimation.setDuration(1000);
+            wheelSpinAnimation.setFillEnabled(true);
+            wheelSpinAnimation.setFillAfter(true);
+            mWheelView.startAnimation(wheelSpinAnimation);
+            mStartPositionHack = (mStartPositionHack + rotationPosition) % 360;
+
             return true;
         }
     }

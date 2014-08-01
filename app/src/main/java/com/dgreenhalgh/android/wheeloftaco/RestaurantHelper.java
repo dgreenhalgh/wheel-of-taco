@@ -19,12 +19,7 @@ public class RestaurantHelper {
         mAppContext = appContext;
         mSerializer = new WheelOfTacoJSONSerializer(mAppContext, FILENAME);
 
-        try {
-            mRestaurants = mSerializer.loadRestaurants();
-        } catch(Exception e) {
-            mRestaurants = new ArrayList<Restaurant>();
-            Log.e(TAG, "Error loading restaurants: ", e);
-        }
+        mRestaurants = loadRestaurants();
     }
 
     public static RestaurantHelper get(Context context) {
@@ -38,6 +33,7 @@ public class RestaurantHelper {
     public void addRestaurant(Restaurant restaurant) {
         if(!mRestaurants.contains(restaurant)) { // TODO: Compare by restaurant name
             mRestaurants.add(restaurant);
+            saveRestaurants();
         }
     }
 
@@ -49,6 +45,17 @@ public class RestaurantHelper {
             Log.e(TAG, "Error saving restaurants: ", e);
             return false;
         }
+    }
+
+    public ArrayList<Restaurant> loadRestaurants() {
+        try {
+            mRestaurants = mSerializer.loadRestaurants();
+        } catch(Exception e) {
+            mRestaurants = new ArrayList<Restaurant>();
+            Log.e(TAG, "Error loading restaurants: ", e);
+        }
+
+        return mRestaurants;
     }
 
     public ArrayList<Restaurant> getRestaurants() {
