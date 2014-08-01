@@ -114,10 +114,14 @@ public class WheelFragment extends Fragment {
     class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener {
 
         private float mStartPositionHack = 0;
+        private RotateAnimation mWheelSpinAnimation;
 
         @Override
         public boolean onDown(MotionEvent event) {
             Log.d("wheelFrag", "down");
+            if(mWheelSpinAnimation != null) {
+                mWheelSpinAnimation.cancel();
+            }
             return true;
         }
 
@@ -127,11 +131,11 @@ public class WheelFragment extends Fragment {
 
             float rotationPosition = velocityY / 10;
 
-            RotateAnimation wheelSpinAnimation = new RotateAnimation(mStartPositionHack, rotationPosition, Animation.ABSOLUTE, mPivotPoint.x / 2, Animation.ABSOLUTE, 692);
-            wheelSpinAnimation.setDuration(1000);
-            wheelSpinAnimation.setFillEnabled(true);
-            wheelSpinAnimation.setFillAfter(true);
-            mWheelView.startAnimation(wheelSpinAnimation);
+            mWheelSpinAnimation = new RotateAnimation(mStartPositionHack, rotationPosition, Animation.ABSOLUTE, mPivotPoint.x / 2, Animation.ABSOLUTE, 692);
+            mWheelSpinAnimation.setDuration(1000);
+            mWheelSpinAnimation.setFillEnabled(true);
+            mWheelSpinAnimation.setFillAfter(true);
+            mWheelView.startAnimation(mWheelSpinAnimation);
             mStartPositionHack = (mStartPositionHack + rotationPosition) % 360;
 
             return true;
