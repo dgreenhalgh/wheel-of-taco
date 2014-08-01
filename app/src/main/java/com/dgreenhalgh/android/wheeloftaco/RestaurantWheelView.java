@@ -35,6 +35,7 @@ public class RestaurantWheelView extends GraphicalView {
 
         wheelRenderer.setShowLabels(false);
         wheelRenderer.setShowLegend(false);
+        wheelRenderer.setPanEnabled(false);
 
         return wheelRenderer;
     }
