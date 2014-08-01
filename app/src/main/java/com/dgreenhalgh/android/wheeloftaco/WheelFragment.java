@@ -57,7 +57,7 @@ public class WheelFragment extends Fragment {
         RestaurantHelper.get(getActivity()).loadRestaurants();
         drawWheel();
 
-        mSelectionPoint = new Point(540, 400);
+        mSelectionPoint = new Point(mPivotPoint.x / 2, 400);
         // TODO: figure out selection
 
         return view;

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -95,7 +96,7 @@ public class RestaurantListFragment extends ListFragment {
                 convertView = getActivity().getLayoutInflater().inflate(R.layout.list_item_restaurant, null);
             }
 
-            Restaurant restaurant = getItem(position);
+            final Restaurant restaurant = getItem(position);
 
             TextView restaurantNameTextView
                     = (TextView)convertView.findViewById(R.id.restaurant_list_item_titleTextView);
@@ -103,6 +104,12 @@ public class RestaurantListFragment extends ListFragment {
             CheckBox restaurantSelectableCheckBox
                     = (CheckBox)convertView.findViewById(R.id.restaurant_list_item_restaurantSelectableTextView);
             restaurantSelectableCheckBox.setChecked(restaurant.isSelectable());
+            restaurantSelectableCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    restaurant.setSelectable(isChecked);
+                }
+            });
 
             return convertView;
         }
