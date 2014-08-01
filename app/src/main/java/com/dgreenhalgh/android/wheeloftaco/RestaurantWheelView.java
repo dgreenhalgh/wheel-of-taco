@@ -28,9 +28,11 @@ public class RestaurantWheelView extends GraphicalView {
 
         DefaultRenderer wheelRenderer = new DefaultRenderer();
         for(Restaurant restaurant : mRestaurants) {
-            SimpleSeriesRenderer simpleSeriesRenderer = new SimpleSeriesRenderer();
-            simpleSeriesRenderer.setColor(restaurant.getWheelSliceColor());
-            wheelRenderer.addSeriesRenderer(simpleSeriesRenderer);
+            if(restaurant.isSelectable()) {
+                SimpleSeriesRenderer simpleSeriesRenderer = new SimpleSeriesRenderer();
+                simpleSeriesRenderer.setColor(restaurant.getWheelSliceColor());
+                wheelRenderer.addSeriesRenderer(simpleSeriesRenderer);
+            }
         }
 
         wheelRenderer.setShowLabels(false);
@@ -45,7 +47,9 @@ public class RestaurantWheelView extends GraphicalView {
 
         CategorySeries restaurantSeries = new CategorySeries("Restaurants");
         for(Restaurant restaurant : mRestaurants) {
-            restaurantSeries.add(restaurant.getName(), 1); // 1 is so that every restaurant has equal weight. Could maybe add weighting in the future?
+            if(restaurant.isSelectable()) {
+                restaurantSeries.add(restaurant.getName(), 1); // 1 is so that every restaurant has equal weight. Could maybe add weighting in the future?
+            }
         }
 
         return restaurantSeries;
