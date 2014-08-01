@@ -37,6 +37,11 @@ public class RestaurantHelper {
         }
     }
 
+    public void deleteRestaurant(Restaurant restaurant) {
+        mRestaurants.remove(restaurant);
+        saveRestaurants();
+    }
+
     public boolean saveRestaurants() {
         try {
             mSerializer.saveRestaurants(mRestaurants);

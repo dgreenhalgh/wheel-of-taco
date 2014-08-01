@@ -14,4 +14,6 @@
     <string name="restaurant_name_hint">The name of the restaurant</string>
     <string name="title_activity_restaurant_list">RestaurantListActivity</string>
 
+    <string name="delete_restaurant">Delete restaurant</string>
+
 </resources>
