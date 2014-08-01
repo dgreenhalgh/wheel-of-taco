@@ -119,9 +119,6 @@ public class WheelFragment extends Fragment {
         @Override
         public boolean onDown(MotionEvent event) {
             Log.d("wheelFrag", "down");
-            if(mWheelSpinAnimation != null) {
-                mWheelSpinAnimation.cancel();
-            }
             return true;
         }
 
