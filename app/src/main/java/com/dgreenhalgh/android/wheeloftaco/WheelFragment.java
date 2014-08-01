@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Display;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,6 +29,7 @@ public class WheelFragment extends Fragment {
     private LinearLayout mWheelContainer;
     private GraphicalView mWheelView;
     private Point mSelectionPoint;
+    private android.graphics.Point mPivotPoint;
 
     private GestureDetector mGestureDetector;
 
@@ -35,6 +37,10 @@ public class WheelFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
+        mPivotPoint = new android.graphics.Point();
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        display.getSize(mPivotPoint);
 
         mGestureDetector = new GestureDetector(getActivity(), new SwipeGestureDetector());
     }
@@ -84,9 +90,17 @@ public class WheelFragment extends Fragment {
         RestaurantHelper.get(getActivity()).saveRestaurants();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        drawWheel();
+    }
+
     public void drawWheel() {
+        if(mWheelView != null) {
+            mWheelContainer.removeView(mWheelView);
+        }
         mWheelView = RestaurantWheelView.getNewInstance(getActivity());
-        mWheelContainer.removeAllViews();
         mWheelContainer.addView(mWheelView);
         mWheelView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -114,7 +128,7 @@ public class WheelFragment extends Fragment {
 
             float rotationPosition = velocityY / 10;
 
-            RotateAnimation wheelSpinAnimation = new RotateAnimation(mStartPositionHack, rotationPosition, Animation.ABSOLUTE, 540, Animation.ABSOLUTE, 692);
+            RotateAnimation wheelSpinAnimation = new RotateAnimation(mStartPositionHack, rotationPosition, Animation.ABSOLUTE, mPivotPoint.x / 2, Animation.ABSOLUTE, 692);
             wheelSpinAnimation.setDuration(1000);
             wheelSpinAnimation.setFillEnabled(true);
             wheelSpinAnimation.setFillAfter(true);

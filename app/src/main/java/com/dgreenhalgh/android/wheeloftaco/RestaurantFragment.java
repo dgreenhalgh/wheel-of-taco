@@ -34,6 +34,5 @@ public class RestaurantFragment extends Fragment {
 
         Restaurant restaurant = new Restaurant(restaurantName);
         RestaurantHelper.get(getActivity()).addRestaurant(restaurant);
-//        RestaurantHelper.get(getActivity()).loadRestaurants();
     }
 }
