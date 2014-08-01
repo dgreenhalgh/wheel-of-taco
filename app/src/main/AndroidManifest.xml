@@ -18,11 +18,11 @@
         </activity>
         <activity
             android:name=".RestaurantActivity"
-            android:label="@string/title_activity_restaurant" >
+            android:label="@string/add_restaurant_activity_title" >
         </activity>
         <activity
             android:name=".RestaurantListActivity"
-            android:label="@string/title_activity_restaurant_list" >
+            android:label="@string/edit_restaurants_activity_title" >
         </activity>
     </application>
 

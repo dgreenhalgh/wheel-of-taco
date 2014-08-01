@@ -107,7 +107,6 @@ public class WheelFragment extends Fragment {
             public boolean onTouch(View v, MotionEvent event) {
                 mGestureDetector.onTouchEvent(event);
                 return true;
-
             }
         });
     }

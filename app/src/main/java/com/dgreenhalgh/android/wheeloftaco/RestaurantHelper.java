@@ -31,7 +31,7 @@ public class RestaurantHelper {
     }
 
     public void addRestaurant(Restaurant restaurant) {
-        if(!mRestaurants.contains(restaurant)) { // TODO: Compare by restaurant name
+        if(!mRestaurants.contains(restaurant) && !restaurant.getName().equals("")) { // TODO: Compare by restaurant name
             mRestaurants.add(restaurant);
             saveRestaurants();
         }

@@ -9,11 +9,10 @@
     <string name="result_text_view_restaurant">You should eat %1$d.</string>
     <string name="wheel_menu_add_restaurant">Add restaurant</string>
     <string name="wheel_menu_edit_restaurants">Edit restaurants</string>
-    <string name="title_activity_restaurant">RestaurantActivity</string>
     <string name="restaurant_name">Name</string>
     <string name="restaurant_name_hint">The name of the restaurant</string>
-    <string name="title_activity_restaurant_list">RestaurantListActivity</string>
-
+    <string name="add_restaurant_activity_title">Add restaurant</string>
+    <string name="edit_restaurants_activity_title">Your restaurants</string>
     <string name="delete_restaurant">Delete restaurant</string>
 
 </resources>
